@@ -32,7 +32,7 @@ sudo apt update
 sudo apt install ros-humble-rviz2
 ```
 
-6.Automate Sourcing
+6.Automate Sourcing  
 Open your .bashrc file:
 ```Bash
 nano ~/.bashrc
