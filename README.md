@@ -57,13 +57,13 @@ export TURTLEBOT3_MODEL=burger  # or waffle, depending on your model
 # Running codes
 Launch gazebo with TurtleBot3
 ```Bash
-ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
+ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py use_sim_time:=true
 ```
 <br>
 
 Open RViz2 on another WSL terminal
 ```Bash
-ros2 run rviz2 rviz2
+ros2 launch turtlebot3_bringup rviz2.launch.py use_sim_time:=true
 ```
 <br>
 
