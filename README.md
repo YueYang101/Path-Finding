@@ -8,38 +8,38 @@ Install Ubuntu 22.04 on windows WSL.
 Install Xlaunch to access the gui when using WSL.
 
 # Setup Code
-1.Installation of Gazebo Fortress
+## 1.Installation of Gazebo Fortress
 https://gazebosim.org/docs/fortress/install_ubuntu/a
 
 <br>
 
-2.Installation of ROS 2 Humble Hawksbill:
+## 2.Installation of ROS 2 Humble Hawksbill:
 https://docs.ros.org/en/humble/Installation.html
 
 <br>
 
-3.ROS-Gazebo integration plug-in
+## 3.ROS-Gazebo integration plug-in
 ```Bash
 sudo apt update
 sudo apt install ros-humble-gazebo-ros-pkgs
 ```
 <br>
 
-4.Install TurtleBot3 Packages
+## 4.Install TurtleBot3 Packages
 ```Bash
 sudo apt update
 sudo apt install ros-humble-turtlebot3 ros-humble-turtlebot3-simulations
 ```
 <br>
 
-5.RViz2
+## 5.RViz2
 ```Bash
 sudo apt update
 sudo apt install ros-humble-rviz2
 ```
 <br>
 
-6.Automate Sourcing<br>
+## 6.Automate Sourcing<br>
 Open your .bashrc file:
 ```Bash
 nano ~/.bashrc
@@ -54,14 +54,44 @@ export TURTLEBOT3_MODEL=burger  # or waffle, depending on your model
 ```
 <br>
 
+## 7.Navigation 2 Installation
+```Bash
+sudo apt update
+sudo apt install -y ros-humble-navigation2 ros-humble-nav2-bringup
+
+```
+<br>
+
+Create Workspace and Clone Nav2 Source
+```Bash
+mkdir -p ~/nav2_ws/src
+cd ~/nav2_ws/src
+git clone https://github.com/ros-planning/navigation2.git --branch humble
+```
+<br>
+
+Install Dependencies and Build
+```Bash
+cd ~/nav2_ws
+rosdep install -y -r -q --from-paths src --ignore-src --rosdistro humble
+colcon build
+```
+<br>
+
+Source Workspace
+```Bash
+source ~/nav2_ws/install/setup.bash
+```
+<br>
+
 # Running codes
-Launch gazebo with TurtleBot3
+## 1.Launch gazebo with TurtleBot3
 ```Bash
 ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py use_sim_time:=true
 ```
 <br>
 
-Open RViz2 on another WSL terminal
+## 2.Open RViz2 on another WSL terminal
 ```Bash
 ros2 launch turtlebot3_bringup rviz2.launch.py use_sim_time:=true
 ```
