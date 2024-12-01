@@ -49,8 +49,8 @@ nano ~/.bashrc
 Add the following lines at the end of the file:
 ```Bash
 source /opt/ros/humble/setup.bash
-source ~/turtlebot3_ws/install/setup.bash
-export TURTLEBOT3_MODEL=burger  # or waffle, depending on your model
+export TURTLEBOT3_MODEL=waffle
+export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/opt/ros/${ROS_DISTRO}/share/turtlebot3_gazebo/models
 ```
 <br>
 
@@ -73,8 +73,11 @@ git clone https://github.com/ros-planning/navigation2.git --branch humble
 Install Dependencies and Build
 ```Bash
 cd ~/nav2_ws
+sudo apt update
+sudo apt install -y python3-colcon-common-extensions
+sudo apt install ros-humble-test-msgs
 rosdep install -y -r -q --from-paths src --ignore-src --rosdistro humble
-colcon build
+colcon build --parallel-workers 4
 ```
 <br>
 
@@ -97,3 +100,14 @@ ros2 launch turtlebot3_bringup rviz2.launch.py use_sim_time:=true
 ```
 <br>
 
+## 3. Running the demo with TB3
+```Bash
+ros2 launch nav2_bringup tb3_simulation_launch.py slam:=True headless:=False
+```
+<br>
+
+## 4. run the package
+```Bash
+ros2 launch explore_lite explore.launch.py
+```
+<br>
