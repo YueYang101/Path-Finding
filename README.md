@@ -111,3 +111,9 @@ ros2 launch nav2_bringup tb3_simulation_launch.py slam:=True headless:=False
 ros2 launch explore_lite explore.launch.py
 ```
 <br>
+
+# Raspberry pi 
+```Bash
+ssh yang@192.168.124.29
+```
+<br>
